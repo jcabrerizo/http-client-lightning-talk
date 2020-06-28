@@ -1,0 +1,22 @@
+# curl --header "Content-Type: application/json"
+#  --request POST
+#  --data '{"name":"name 1","job":"job 1"}'
+#  http://localhost:8080/
+POST http://{{server}}:8080/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "{{default_name}}",
+  "job": "{{default_job}}"
+}
+> {%
+ client.global.set("inserted_code", response.body.code);
+
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+###
+
+GET http://{{server}}:8080/{{inserted_code}}
