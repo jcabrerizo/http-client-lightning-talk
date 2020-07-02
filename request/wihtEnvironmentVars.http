@@ -1,0 +1,9 @@
+POST http://{{server}}:8080/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "{{default_name}}",
+  "job": "{{default_job}}"
+}
+###
